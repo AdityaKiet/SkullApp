@@ -3,4 +3,36 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
+    <!-- Buttons -->
+
+    <string name="get_started">Get Started</string>
+    <string name="btn_login">Sign IN</string>
+    <string name="btn_singup">Sign Up</string>
+    <string name="btn_continue">Continue</string>
+
+    <!-- Titles -->
+
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="address">Address</string>
+
+    <string name="email">Email</string>
+    <string name="please_wait">Please wait</string>
+
+    <string name="password">Password</string>
+    <string name="school_name">School Name</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="email_or_phone">Email or Phone</string>
+
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pincode">Pincode</string>
+
+    <string name="ok">OK</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="no_internet">Could not connect with internet.</string>
+    <string name="sign_in_page">Not registered ? Sign Up</string>
 </resources>
