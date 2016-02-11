@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.egnesse.skulapp.R;
-import com.egnesse.skulapp.asynctasks.RegisterAsyncTask;
 import com.egnesse.skulapp.dto.AddressDTO;
 import com.egnesse.skulapp.dto.MessageCustomDialogDTO;
 import com.egnesse.skulapp.dto.RegisterDTO;
+import com.egnesse.skulapp.network.Register;
 import com.egnesse.skulapp.security.Validate;
+import com.egnesse.skulapp.ui.Dialog;
 import com.egnesse.skulapp.ui.SnackBar;
+import com.egnesse.skulapp.util.NetworkCheck;
 import com.google.gson.Gson;
 
 import butterknife.Bind;
@@ -144,11 +146,24 @@ public class GetAddressActivity extends AppCompatActivity {
             addressDTO.setPincode(pincode);
             registerDTO.setAddress(addressDTO);
 
-            RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask(this, registerDTO);
-          /*  if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
+            /*RegisterAsyncTask registerAsyncTask = new RegisterAsyncTask(this, registerDTO);
+          *//*  if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
                 registerAsyncTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-            else*/
-                registerAsyncTask.execute();
+            else*//*
+                registerAsyncTask.execute();*/
+            if(!NetworkCheck.isNetworkAvailable(this)){
+                MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
+                messageCustomDialogDTO.setMessage(getString(R.string.no_internet));
+                SnackBar.show(this, messageCustomDialogDTO);
+                return;
+            }
+
+            try{
+                Register register = new Register();
+                register.run(this, registerDTO);
+            }catch (Exception e){
+                Dialog.showSimpleDialog(this, e.toString());
+            }
         }
     }
 }

@@ -35,4 +35,5 @@
     <string name="forgot_password">Forgot Password ?</string>
     <string name="no_internet">Could not connect with internet.</string>
     <string name="sign_in_page">Not registered ? Sign Up</string>
+
 </resources>
