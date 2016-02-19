@@ -33,17 +33,13 @@ public class Register implements NetworkConstnats {
     private MaterialDialog.Builder builder;
     private MaterialDialog dialog;
 
-    public void run(final Context context, RegisterDTO registerDTO) {
+    public void run(final Context context, RegisterDTO registerDTO) throws  Exception{
         builder = GetProgressBar.get(context);
         String url = REGISTER_URL;
         builder.content("Loading...");
         dialog = builder.show();
         final Gson gson = new Gson();
-
-        HashMap<String, String> params = new HashMap<>();
-        params.put("data", gson.toJson(registerDTO));
-
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(gson.toJson(registerDTO)), new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

@@ -2,6 +2,8 @@ package com.egnesse.skulapp.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.egnesse.skulapp.R;
 
@@ -16,6 +18,8 @@ import pl.droidsonroids.gif.GifImageView;
 public class EmailVerificationPendingActivity extends AppCompatActivity{
     @Bind(R.id.gifSuccess)
     GifImageView gifSuccess;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,10 @@ public class EmailVerificationPendingActivity extends AppCompatActivity{
             GifDrawable gifFromAssets = new GifDrawable(getAssets(), "success.gif");
             gifSuccess.setImageDrawable(gifFromAssets);
         }catch (Exception e){
+            gifSuccess.setVisibility(View.GONE);
             e.printStackTrace();
         }
-
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
     }
 }

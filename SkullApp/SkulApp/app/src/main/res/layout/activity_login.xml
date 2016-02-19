@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <AutoCompleteTextView
+            <com.egnesse.skulapp.ui.autocompletetextview.CustomAutoCompleteTextView
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:textSize="16sp" />
 
 
-            <EditText
+            <com.egnesse.skulapp.ui.edittext.CustomEditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,9 +69,9 @@
                 android:text="@string/forgot_password"
                 android:textColor="@color/forgot_password" />
 
-            <Button
+            <com.egnesse.skulapp.ui.button.ButtonPlus
                 android:id="@+id/btnLogin"
-                style="?android:textAppearanceSmall"
+                style="@style/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -82,8 +82,7 @@
                 android:text="@string/btn_login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
 
             <TextView

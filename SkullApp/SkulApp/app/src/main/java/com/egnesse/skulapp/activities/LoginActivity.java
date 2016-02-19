@@ -13,16 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.egnesse.skulapp.R;
 import com.egnesse.skulapp.dto.MessageCustomDialogDTO;
 import com.egnesse.skulapp.security.Validate;
+import com.egnesse.skulapp.ui.CustomTitle;
+import com.egnesse.skulapp.ui.CustomTypeFace;
 import com.egnesse.skulapp.ui.SnackBar;
+import com.egnesse.skulapp.ui.autocompletetextview.CustomAutoCompleteTextView;
+import com.egnesse.skulapp.ui.button.ButtonPlus;
+import com.egnesse.skulapp.ui.edittext.CustomEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,23 +39,29 @@ import butterknife.OnClick;
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     @Bind(R.id.etEmail)
-    AutoCompleteTextView autoCompleteTextViewEmail;
+    CustomAutoCompleteTextView autoCompleteTextViewEmail;
     @Bind(R.id.etPassword)
-    EditText etPassword;
+    CustomEditText etPassword;
     @Bind(R.id.btnLogin)
-    Button btnLogin;
+    ButtonPlus btnLogin;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    private TextView txtTitle;
+    @Bind(R.id.txtForgotPassword)
+    TextView txtForgotPassword;
+    @Bind(R.id.txtSignUp)
+    TextView txtSignUp;
+
     @OnClick(R.id.txtForgotPassword)
-    void forgotPassword(){
+    void forgotPassword() {
 
     }
+
     @OnClick(R.id.txtSignUp)
-    void signUp(){
+    void signUp() {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
+
     @OnClick(R.id.btnLogin)
     void login() {
         attemptLogin();
@@ -73,13 +81,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         populateAutoComplete();
         setSupportActionBar(toolbar);
 
-        // txtTitle.setText();
+        txtForgotPassword.setTypeface(CustomTypeFace.getTypeface(this));
+        txtSignUp.setTypeface(CustomTypeFace.getTypeface(this));
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             btnLogin.setBackgroundResource(R.drawable.abc_alpha_btn_background_ripple);
         }
 
-        getSupportActionBar().setTitle(getResources().getString(R.string.login));
+        getSupportActionBar().setTitle(CustomTitle.getTitle(this, getResources().getString(R.string.login)));
 
         toolbar.setNavigationIcon(R.mipmap.abc_ic_ab_back_mtrl_am_alpha);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -104,29 +113,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String email = autoCompleteTextViewEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-
 
         if (!Validate.isValidEmailAddress(email)) {
-            autoCompleteTextViewEmail.setError(getString(R.string.error_field_required));
-            focusView = autoCompleteTextViewEmail;
-            cancel = true;
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_field_required));
             SnackBar.show(this, messageCustomDialogDTO);
 
         } else if (!Validate.isPasswordValid(password)) {
-            etPassword.setError(getString(R.string.error_invalid_password));
-            focusView = etPassword;
-            cancel = true;
-
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_invalid_password));
             SnackBar.show(this, messageCustomDialogDTO);
-        }
-        if (cancel) {
-            focusView.requestFocus();
         } else {
             Toast.makeText(LoginActivity.this, "Login", Toast.LENGTH_SHORT).show();
         }

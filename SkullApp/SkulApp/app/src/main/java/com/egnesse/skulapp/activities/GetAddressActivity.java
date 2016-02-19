@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.egnesse.skulapp.R;
 import com.egnesse.skulapp.dto.AddressDTO;
@@ -14,8 +12,11 @@ import com.egnesse.skulapp.dto.MessageCustomDialogDTO;
 import com.egnesse.skulapp.dto.RegisterDTO;
 import com.egnesse.skulapp.network.Register;
 import com.egnesse.skulapp.security.Validate;
+import com.egnesse.skulapp.ui.CustomTitle;
 import com.egnesse.skulapp.ui.Dialog;
 import com.egnesse.skulapp.ui.SnackBar;
+import com.egnesse.skulapp.ui.button.ButtonPlus;
+import com.egnesse.skulapp.ui.edittext.CustomEditText;
 import com.egnesse.skulapp.util.NetworkCheck;
 import com.google.gson.Gson;
 
@@ -29,19 +30,19 @@ import butterknife.OnClick;
 public class GetAddressActivity extends AppCompatActivity {
     private RegisterDTO registerDTO;
     @Bind(R.id.etCity)
-    EditText etCity;
+    CustomEditText etCity;
 
     @Bind(R.id.etStreet)
-    EditText etStreet;
+    CustomEditText etStreet;
 
     @Bind(R.id.etState)
-    EditText etState;
+    CustomEditText etState;
 
     @Bind(R.id.etPincode)
-    EditText etPincode;
+    CustomEditText etPincode;
 
     @Bind(R.id.btnSignUp)
-    Button btnSignUp;
+    ButtonPlus btnSignUp;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -72,7 +73,7 @@ public class GetAddressActivity extends AppCompatActivity {
             btnSignUp.setBackgroundResource(R.drawable.abc_alpha_btn_background_ripple);
         }
 
-        getSupportActionBar().setTitle(getResources().getString(R.string.address));
+        getSupportActionBar().setTitle(CustomTitle.getTitle(this, getResources().getString(R.string.address)));
 
         toolbar.setNavigationIcon(R.mipmap.abc_ic_ab_back_mtrl_am_alpha);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -95,49 +96,28 @@ public class GetAddressActivity extends AppCompatActivity {
         String street = etStreet.getText().toString();
         String pincode = etPincode.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-
-
         if (!Validate.isStreetValid(street)) {
-            etStreet.setError(getString(R.string.error_field_required));
-            focusView = etStreet;
-            cancel = true;
-
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_field_required));
             SnackBar.show(this, messageCustomDialogDTO);
 
         } else if (!Validate.isCityValid(city)) {
-            etCity.setError(getString(R.string.error_field_required));
-            focusView = etCity;
-            cancel = true;
 
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_field_required));
             SnackBar.show(this, messageCustomDialogDTO);
 
         } else if (!Validate.isStateValid(state)) {
-            etState.setError(getString(R.string.error_field_required));
-            focusView = etState;
-            cancel = true;
-
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_field_required));
             SnackBar.show(this, messageCustomDialogDTO);
         } else if (!Validate.isPincodeValid(pincode)) {
-            etPincode.setError(getString(R.string.error_invalid_pincode));
-            focusView = etPincode;
-            cancel = true;
-
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_invalid_pincode));
             SnackBar.show(this, messageCustomDialogDTO);
         }
 
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
+         else {
             AddressDTO addressDTO = new AddressDTO();
 
             addressDTO.setStreet(street);

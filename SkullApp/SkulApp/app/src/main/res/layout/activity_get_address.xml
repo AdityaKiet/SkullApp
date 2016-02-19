@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
 
-            <EditText
+            <com.egnesse.skulapp.ui.edittext.CustomEditText
                 android:id="@+id/etStreet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="16sp" />
 
-            <EditText
+            <com.egnesse.skulapp.ui.edittext.CustomEditText
                 android:id="@+id/etCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="16sp" />
 
-            <EditText
+            <com.egnesse.skulapp.ui.edittext.CustomEditText
                 android:id="@+id/etState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="16sp" />
 
-            <EditText
+            <com.egnesse.skulapp.ui.edittext.CustomEditText
                 android:id="@+id/etPincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,9 +92,9 @@
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="16sp" />
 
-            <Button
+            <com.egnesse.skulapp.ui.button.ButtonPlus
                 android:id="@+id/btnSignUp"
-                style="?android:textAppearanceSmall"
+                style="@style/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -105,8 +105,7 @@
                 android:text="@string/btn_singup"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

@@ -18,7 +18,7 @@ public class AppInfoSlidingImageAdapter extends PagerAdapter {
 
     private LayoutInflater inflater;
     private Context context;
-    private Integer [] images = {R.drawable.splash, R.drawable.splash, R.drawable.splash, R.drawable.splash, R.drawable.splash, R.drawable.splash};
+    private Integer [] images = {R.mipmap.splash1, R.mipmap.splash2, R.mipmap.splash3};
 
     public AppInfoSlidingImageAdapter(Context context) {
         this.context = context;

@@ -13,15 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.egnesse.skulapp.R;
 import com.egnesse.skulapp.dto.MessageCustomDialogDTO;
 import com.egnesse.skulapp.dto.RegisterDTO;
 import com.egnesse.skulapp.security.Validate;
+import com.egnesse.skulapp.ui.CustomTitle;
 import com.egnesse.skulapp.ui.SnackBar;
+import com.egnesse.skulapp.ui.autocompletetextview.CustomAutoCompleteTextView;
+import com.egnesse.skulapp.ui.button.ButtonPlus;
+import com.egnesse.skulapp.ui.edittext.CustomEditText;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -36,16 +37,16 @@ import butterknife.OnClick;
  */
 public class SignUpActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     @Bind(R.id.etEmail)
-    AutoCompleteTextView autoCompleteTextViewEmail;
+    CustomAutoCompleteTextView autoCompleteTextViewEmail;
 
     @Bind(R.id.etMobile)
-    EditText etMobile;
+    CustomEditText etMobile;
 
     @Bind(R.id.etSchoolName)
-    EditText etSchoolName;
+    CustomEditText etSchoolName;
 
     @Bind(R.id.btnSignUp)
-    Button btnSignUp;
+    ButtonPlus btnSignUp;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -73,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
             btnSignUp.setBackgroundResource(R.drawable.abc_alpha_btn_background_ripple);
         }
 
-        getSupportActionBar().setTitle(getResources().getString(R.string.sign_up));
+        getSupportActionBar().setTitle(CustomTitle.getTitle(this, getResources().getString(R.string.sign_up)));
 
         toolbar.setNavigationIcon(R.mipmap.abc_ic_ab_back_mtrl_am_alpha);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -100,39 +101,21 @@ public class SignUpActivity extends AppCompatActivity implements LoaderManager.L
         String mobile = etMobile.getText().toString();
         String schoolName = etSchoolName.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
-
-
         if (!Validate.isValidEmailAddress(email)) {
-            autoCompleteTextViewEmail.setError(getString(R.string.error_field_required));
-            focusView = autoCompleteTextViewEmail;
-            cancel = true;
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
-            messageCustomDialogDTO.setMessage(getString(R.string.error_field_required));
+            messageCustomDialogDTO.setMessage(getString(R.string.error_invalid_email));
             SnackBar.show(this, messageCustomDialogDTO);
 
         } else if (!Validate.isMobileValid(mobile)) {
-            etMobile.setError(getString(R.string.error_invalid_phone));
-            focusView = etMobile;
-            cancel = true;
-
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_invalid_phone));
             SnackBar.show(this, messageCustomDialogDTO);
         } else if (!Validate.isSchoolNameValid(schoolName)) {
-            etSchoolName.setError(getString(R.string.error_invalid_school));
-            focusView = etSchoolName;
-            cancel = true;
-
             MessageCustomDialogDTO messageCustomDialogDTO = new MessageCustomDialogDTO();
             messageCustomDialogDTO.setMessage(getString(R.string.error_invalid_school));
             SnackBar.show(this, messageCustomDialogDTO);
         }
-
-        if (cancel) {
-            focusView.requestFocus();
-        } else {
+        else {
             RegisterDTO registerDTO = new RegisterDTO();
             registerDTO.setEmail(email);
             registerDTO.setMobile(mobile);

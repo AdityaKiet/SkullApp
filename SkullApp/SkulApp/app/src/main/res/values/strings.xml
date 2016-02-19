@@ -8,7 +8,7 @@
     <!-- Buttons -->
 
     <string name="get_started">Get Started</string>
-    <string name="btn_login">Sign IN</string>
+    <string name="btn_login">Sign In</string>
     <string name="btn_singup">Sign Up</string>
     <string name="btn_continue">Continue</string>
 
@@ -35,5 +35,45 @@
     <string name="forgot_password">Forgot Password ?</string>
     <string name="no_internet">Could not connect with internet.</string>
     <string name="sign_in_page">Not registered ? Sign Up</string>
+    <string name="mail_sent">A verification e-mail has been sent to your email ID. Kindly check it and activiate your account.</string>
+    <string name="drawer_frame_layout">DrawerFrameLayout</string>
+    <string name="drawer_activity">DrawerActivity</string>
+    <string name="drawer_open">Menu open</string>
+    <string name="drawer_close">Menu closed</string>
+
+    <string name="lorem_ipsum_short" translatable="false">Admin</string>
+    <string name="lorem_ipsum_medium" translatable="false">Lorem ipsum dolor sit amet</string>
+    <string name="lorem_ipsum_long" translatable="false">D.P.S. Kalyanpur</string>
+
+
+    <string name="dashboard">Dashboard</string>
+    <string name="news_feed">News Feed</string>
+
+    <string name="teachers">Teachers</string>
+    <string name="student">Student</string>
+    <string name="classes">Classes</string>
+
+
+    <string name="staff">Staff</string>
+    <string name="calender">Calender</string>
+    <string name="events">Events</string>
+    <string name="gallery">Gallery</string>
+
+    <string name="forms">Forms</string>
+    <string name="lost_n_found">Lost and Found</string>
+    <string name="advertise">Advertise</string>
+    <string name="contact_us">Contact SkulApp</string>
+
+    <string name="starred_string">Starred</string>
+    <string name="inbox_string">Inbox</string>
+    <string name="sent_mail_string">Sent mail</string>
+    <string name="draft_string">Drafts</string>
+    <string name="subheader">Subheader</string>
+    <string name="trash_string">Trash</string>
+    <string name="all_mail_string">All mails</string>
+    <string name="spam_string">Spams</string>
+
+    <string name="closeDrawer">Navigation View</string>
+    <string name="openDrawer">Navigation View Closed</string>
 
 </resources>
